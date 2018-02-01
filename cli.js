@@ -14,13 +14,13 @@ var propsToShow = [
   'Title', 'Year', 'Released', 'Runtime', 
   'Genre', 'Director', 'Writer', 'Actors',
   'Plot', 'Language', 'Country', 'Awards', 
-  'Metascore', 'imdbRating', 'tomatoMeter', 
+  'Metascore', 'imdbRating',
   'BoxOffice', 'Production'
 ];
   
 var propsToCompare = [
   'Title', 'Year', 'Released', 'Runtime',
-  'Genre', 'Metascore', 'imdbRating', 'tomatoMeter',
+  'Genre', 'Metascore', 'imdbRating',
   'BoxOffice', 'Production'
 ];
   
@@ -29,7 +29,7 @@ program
 .parse(process.argv);
 
 if(program.args.length < 1) {
-  console.log(chalk.red('Please give a movie name!!')); 
+  console.log(chalk.red('Please provide a movie title!')); 
   process.exit(1);
 }
 
