@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 'use strict';
 
-var program = require('commander');
-var chalk = require('chalk');
-var elegantSpinner = require('elegant-spinner');
-var logUpdate = require('log-update');
-var fetch = require('isomorphic-fetch');
-var Promise = require('es6-promise').Promise;
+const program = require('commander');
+const chalk = require('chalk');
+const elegantSpinner = require('elegant-spinner');
+const logUpdate = require('log-update');
+const fetch = require('isomorphic-fetch');
+const Promise = require('es6-promise').Promise;
 
-var frame = elegantSpinner();
+const frame = elegantSpinner();
 
-var propsToShow = [
+const propsToShow = [
   'Title', 'Year', 'Released', 'Runtime', 
   'Genre', 'Director', 'Writer', 'Actors',
   'Plot', 'Language', 'Country', 'Awards', 
@@ -18,7 +18,7 @@ var propsToShow = [
   'BoxOffice', 'Production'
 ];
   
-var propsToCompare = [
+const propsToCompare = [
   'Title', 'Year', 'Released', 'Runtime',
   'Genre', 'Metascore', 'imdbRating',
   'BoxOffice', 'Production'
@@ -28,17 +28,17 @@ program
 .description('Get information about a movie or tv series or compare two movies!')
 .parse(process.argv);
 
-if(program.args.length < 1) {
+const(program.args.length < 1) {
   console.log(chalk.red('Please provide a movie title!')); 
   process.exit(1);
 }
 
-if(program.args.join().toUpperCase().indexOf('::') !== -1) {
-  var interval1 = setInterval(function() {
+const(program.args.join().toUpperCase().indexOf('::') !== -1) {
+  const interval1 = setInterval(function() {
   logUpdate("Loading..." + chalk.cyan.bold.dim(frame()));
   }, 50)
-  var movies = program.args.join(" ").toUpperCase().split("::");
-  var urls = movies.map(function(mov) {
+  const movies = program.args.join(" ").toUpperCase().split("::");
+  const urls = movies.map(function(mov) {
     return 'http://www.omdbapi.com/?apikey=[yourkey]&t='+ mov.trim().replace(/ /g,"+")'
   });
   
@@ -49,10 +49,8 @@ if(program.args.join().toUpperCase().indexOf('::') !== -1) {
     logUpdate.clear();
     compareInfo(movies) 
   });
-  }
-
-else {
-  var interval = setInterval(function() {
+  } else {
+  const interval = setInterval(function() {
   logUpdate("Loading..." + chalk.cyan.bold.dim(frame()));
   }, 50)
   fetch('http://www.omdbapi.com/?apikey=[yourkey]&t='+ program.args.join().trim().replace(/ /g,"+")')
@@ -69,7 +67,7 @@ function compareInfo(movies) {
     process.exit(1);
   }
   
-  var props = Object.keys(movies[0]);
+  const props = Object.keys(movies[0]);
   props = propsToCompare.map(function(prop, i, arr) {
         if(movies[0][prop] === 'N/A' && movies[1][prop] === 'N/A') {
           return ;
@@ -86,7 +84,7 @@ function printInfo(movie) {
     console.log(chalk.red(movie.Error));
     process.exit(1);
   }
-  var props = Object.keys(movie);
+  const props = Object.keys(movie);
   props = propsToShow.map(function(prop, i, arr) {
         if(movie[prop] !== 'N/A'){
         console.log(chalk.bold.cyan(prop), " ".repeat(13-prop.length),"        ::", movie[prop], "");
