@@ -5,6 +5,7 @@
   "bin": {
     "movie": "./cli.js"
   },
+  "preferGlobal": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mayankchd/movie-cli.git"
@@ -16,11 +17,11 @@
   },
   "homepage": "https://github.com/mayankchd/movie-cli#readme",
   "dependencies": {
-    "chalk": "^1.1.1",
-    "commander": "^2.9.0",
+    "chalk": "^2.3.0",
+    "commander": "^2.13.0",
     "elegant-spinner": "^1.0.1",
-    "es6-promise": "^3.1.2",
+    "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1",
-    "log-update": "^1.0.2"
+    "log-update": "^2.3.0"
   }
 }
