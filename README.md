@@ -1,11 +1,3 @@
-## Deprecation warning
-
-`movie-cli` is no longer being actively maintained, and does not function due to OMDBAPI (the API used for retrieving movie information) being made a paid service.
-
-If anyone is interested in finding an alternative API to use then please feel free to submit a Pull Request!
-
----
-
 # movie-cli
 A CLI for getting information about a movies and comparing two movies
 
