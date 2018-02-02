@@ -1,3 +1,4 @@
+
 #!/usr/bin/env node
 'use strict';
 
@@ -39,7 +40,7 @@ if(program.args.join().toUpperCase().indexOf('::') !== -1) {
   }, 50)
   var movies = program.args.join(" ").toUpperCase().split("::");
   var urls = movies.map(function(mov) {
-    return 'http://www.omdbapi.com/?t='+ mov.trim().replace(/ /g,"+")+'&tomatoes=true'
+    return 'http://www.omdbapi.com/?apikey=[yourkey]&t='+ mov.trim().replace(/ /g,"+")
   });
   
   Promise.all(urls.map(fetch)).
@@ -50,12 +51,11 @@ if(program.args.join().toUpperCase().indexOf('::') !== -1) {
     compareInfo(movies) 
   });
   }
-
 else {
   var interval = setInterval(function() {
   logUpdate("Loading..." + chalk.cyan.bold.dim(frame()));
   }, 50)
-  fetch('http://www.omdbapi.com/?t='+ program.args.join().trim().replace(/ /g,"+")+'&tomatoes=true')
+  fetch('http://www.omdbapi.com/?apikey=[yourkey]&t='+ program.args.join().trim().replace(/ /g,"+")')
   .then(function(res) { return res.json()})
   .then(function(mov) {
     clearInterval(interval); 
