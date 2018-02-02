@@ -55,7 +55,7 @@ else {
   var interval = setInterval(function() {
   logUpdate("Loading..." + chalk.cyan.bold.dim(frame()));
   }, 50)
-  fetch('http://www.omdbapi.com/?apikey=[yourkey]&t='+ program.args.join().trim().replace(/ /g,"+")')
+  fetch('http://www.omdbapi.com/?apikey=[yourkey]&t='+ program.args.join().trim().replace(/ /g,"+")
   .then(function(res) { return res.json()})
   .then(function(mov) {
     clearInterval(interval); 
