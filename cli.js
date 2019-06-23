@@ -1,4 +1,3 @@
-
 #!/usr/bin/env node
 'use strict';
 
@@ -24,6 +23,10 @@ const propsToCompare = [
   'Genre', 'Metascore', 'imdbRating', 'tomatoMeter',
   'BoxOffice', 'Production'
 ];
+
+const defaultKey = '5e540903';
+
+const initialUrl = 'http://www.omdbapi.com/?apikey=';
   
 program
 .description('Get information about a movie or tv series or compare two movies!')
@@ -40,7 +43,7 @@ if(program.args.join().toUpperCase().indexOf('::') !== -1) {
   }, 50)
   const movies = program.args.join(" ").toUpperCase().split("::");
   const urls = movies.map(function(mov) {
-    return 'http://www.omdbapi.com/?apikey=[yourkey]&t='+ mov.trim().replace(/ /g,"+")
+    return `${initialUrl}${defaultKey}&t='${mov.trim().replace(/ /g,"+")}`
   });
   
   Promise.all(urls.map(fetch)).
@@ -55,7 +58,7 @@ else {
   const interval = setInterval(function() {
   logUpdate("Loading..." + chalk.cyan.bold.dim(frame()));
   }, 50)
-  fetch('http://www.omdbapi.com/?apikey=[yourkey]&t='+ program.args.join().trim().replace(/ /g,"+")
+  fetch(`${initialUrl}${defaultKey}&t=${program.args.join().trim().replace(/ /g,"+")}`)
   .then(function(res) { return res.json()})
   .then(function(mov) {
     clearInterval(interval); 
@@ -69,8 +72,7 @@ function compareInfo(movies) {
     process.exit(1);
   }
   
-  const props = Object.keys(movies[0]);
-  props = propsToCompare.map(function(prop, i, arr) {
+  propsToCompare.forEach(function(prop, i, arr) {
         if(movies[0][prop] === 'N/A' && movies[1][prop] === 'N/A') {
           return ;
         }
@@ -86,8 +88,8 @@ function printInfo(movie) {
     console.log(chalk.red(movie.Error));
     process.exit(1);
   }
-  const props = Object.keys(movie);
-  props = propsToShow.map(function(prop, i, arr) {
+
+  propsToShow.forEach(function(prop, i, arr) {
         if(movie[prop] !== 'N/A'){
         console.log(chalk.bold.cyan(prop), " ".repeat(13-prop.length),"        ::", movie[prop], "");
         }

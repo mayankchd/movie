@@ -1,6 +1,6 @@
 {
   "name": "movie-cli",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A CLI for getting information about a movie and comparing two movies",
   "bin": {
     "movie": "./cli.js"
