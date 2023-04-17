@@ -21,7 +21,7 @@
     "commander": "^2.13.0",
     "elegant-spinner": "^1.0.1",
     "es6-promise": "^4.2.4",
-    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-fetch": "^3.0.0",
     "log-update": "^2.3.0"
   }
 }
